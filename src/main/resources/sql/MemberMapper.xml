@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sujin.member.repository.mapper.MemberMapper">
+	<!-- <select id="findById" parameterType="Long"
+	resultType="com.findjob.sample.domain.Sample">
+    SELECT id, name
+    FROM samples
+    WHERE id = #{id}
+  </select>-->
+<insert id="memberSave" useGeneratedKeys="true" keyProperty="memberId">
+	INSERT INTO MEMBER (
+						MEMBER_MAIL,
+						MEMBER_NAME,
+						MEMBER_ADDRESS
+						)
+				VALUES(
+						#{memberMail},
+						#{memberName},
+						#{memberAddress}
+						)
+	
+</insert>
+	<select id="findByMail">
+		SELECT * FROM MEMBER WHERE MEMBER_MAIL = #{memberMail}
+		
+	</select>
+
+</mapper>
+
