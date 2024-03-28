@@ -32,7 +32,20 @@ public class MemberService {
 		
 		memberRepository.memberSave(member);
 	}
-
+	
+//	@Transactional
+//	public Member memberSave(MemberSaveRequest request) {
+//		// TODO Auto-generated method stub
+//		Member m  = memberRepository.findByMail(request.getMemberMail());
+//		if (m != null) {
+//			throw new IllegalArgumentException("중복된 이메일 입니다.");
+//		} 
+//		
+//		Member member = new Member(request.getMemberMail(), request.getMemberName(), request.getMemberAddress());
+//		
+//		return member;
+//	}
+	
 	public List<MemberOneResponse> memberList() {
 		// TODO Auto-generated method stub
 		List<Member> members = memberRepository.memberList();
@@ -42,4 +55,6 @@ public class MemberService {
 		
 		// 숙제 for문 바꿔보기
 	}
+
+
 }
