@@ -55,6 +55,11 @@ public class MemberService {
 		
 		// 숙제 for문 바꿔보기
 	}
+	
+//	public List<MemberOneResponse> memberList() {
+//		// TODO Auto-generated method stub
+//		return memberRepository.memberList();
+//	}
 
 
 }

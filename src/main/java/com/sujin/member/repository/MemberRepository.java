@@ -32,4 +32,8 @@ public class MemberRepository {
 		return memberMapper.memberList();
 	}
 	
+//	public List<MemberOneResponse> memberList() {
+//		// TODO Auto-generated method stub
+//		return memberMapper.memberList();
+//	}
 }

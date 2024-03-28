@@ -38,4 +38,5 @@ public class MemberController {
 	public List<MemberOneResponse> memberList() {
 		return memberSerivce.memberList();
 	}
+	
 }

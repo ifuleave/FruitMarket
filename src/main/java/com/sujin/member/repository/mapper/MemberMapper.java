@@ -16,5 +16,7 @@ public interface MemberMapper {
 	Member findByMail(String memberMail);
 
 	List<Member> memberList();
+	
+//	List<MemberOneResponse> memberList();
 
 }
