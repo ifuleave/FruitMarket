@@ -39,5 +39,7 @@ public class MemberService {
 		return members.stream()
 			   .map(MemberOneResponse::of)
 			   .toList();
+		
+		// 숙제 for문 바꿔보기
 	}
 }
