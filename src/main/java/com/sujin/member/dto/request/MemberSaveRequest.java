@@ -25,7 +25,7 @@ public class MemberSaveRequest {
 	
 // 정적 팩토리 메소드
 	
-	public static Member toMember(MemberSaveRequest request) {
+	public static  Member toMember(MemberSaveRequest request) {
 		return Member.builder()
 				.memberMail(request.getMemberMail())
 				.memberName(request.getMemberName())

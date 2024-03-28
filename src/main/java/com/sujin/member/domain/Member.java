@@ -19,8 +19,15 @@ public class Member {
 		this.memberName = memberName;
 		this.memberAddress = memberAddress;
 	}
-	
 
+	@Builder
+	public Member(Long memberId, String memberMail, String memberName, String memberAddress) {
+		this.memberId = memberId;
+		this.memberMail = memberMail;
+		this.memberName = memberName;
+		this.memberAddress = memberAddress;
+	}
+	
 	
 	
 }

@@ -1,9 +1,12 @@
 package com.sujin.member.repository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.sujin.member.domain.Member;
 import com.sujin.member.dto.request.MemberSaveRequest;
+import com.sujin.member.dto.response.MemberOneResponse;
 import com.sujin.member.repository.mapper.MemberMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,11 @@ public class MemberRepository {
 	public Member findByMail(String memberMail) {
 		// TODO Auto-generated method stub
 		return memberMapper.findByMail(memberMail);
+	}
+
+	public List<Member> memberList() {
+		// TODO Auto-generated method stub
+		return memberMapper.memberList();
 	}
 	
 }

@@ -22,7 +22,10 @@
 </insert>
 	<select id="findByMail">
 		SELECT * FROM MEMBER WHERE MEMBER_MAIL = #{memberMail}
-		
+	</select>
+
+	<select id="memberList">
+		SELECT * FROM MEMBER
 	</select>
 
 </mapper>
