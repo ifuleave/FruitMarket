@@ -1,5 +1,6 @@
 package com.sujin.member.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -46,15 +47,29 @@ public class MemberService {
 //		return member;
 //	}
 	
-	public List<MemberOneResponse> memberList() {
-		// TODO Auto-generated method stub
-		List<Member> members = memberRepository.memberList();
-		return members.stream()
-			   .map(MemberOneResponse::of)
-			   .toList();
-		
-		// 숙제 for문 바꿔보기
-	}
+	 public List<MemberOneResponse> memberList() {
+	      // TODO Auto-generated method stub
+	      List<Member> members = memberRepository.memberList();
+	      
+//	      return members.stream()
+//	            .map(MemberOneResponse::of)
+//	            .toList();
+	         List<MemberOneResponse> list = new ArrayList<>();
+	         
+	         for(int i=0; i < members.size();i++) {
+//	            MemberOneResponse mor = new MemberOneResponse();
+//	            mor.setMemberId(member.get(i).getMemberId());
+//	            mor.setMemberName(member.get(i).getMemberName());
+//	            mor.setMemberMail(member.get(i).getMemberMail());
+//	            mor.setMemberAddress(member.get(i).getMemberAddress());
+//	            list.add(mor);
+	            
+	            MemberOneResponse memberOne = MemberOneResponse.of(members.get(i));
+	            list.add(memberOne);
+	         } 
+	         return list;
+	   }
+
 	
 //	public List<MemberOneResponse> memberList() {
 //		// TODO Auto-generated method stub

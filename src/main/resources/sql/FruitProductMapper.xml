@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sujin.fruit.repository.mapper.FruitProductMapper">
+	<!-- <select id="findById" parameterType="Long"
+	resultType="com.findjob.sample.domain.Sample">
+    SELECT id, name
+    FROM samples
+    WHERE id = #{id}
+  </select> 
+  keyProperty="fruitId"
+  -->
+<insert id="productSave" useGeneratedKeys="true" >
+	INSERT INTO FRUIT_PRODUCT (
+								FRUIT_NAME,
+								FRUIT_PRICE,
+								FRUIT_AMOUNT,
+								FRUITCARTEGORY_ID
+								)
+					 VALUES	  (
+								#{fruitName},
+								#{fruitPrice},
+								#{fruitAmount},
+								#{fruitcategoryId}
+								)
+	
+</insert>
+
+</mapper>
+
