@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sujin.fruit.dto.request.FruitProductOrderRequest;
 import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
 import com.sujin.fruit.dto.response.FruitListReponse;
@@ -49,5 +50,11 @@ public class FruitProductController {
 	public void deleteFruitProduct(@PathVariable Long id) {
 		fruitProductService.deleteFruitProduct(id);
 	}
+	
+	@PostMapping("/api/orders")
+	public void fruitProductOrder(@RequestBody FruitProductOrderRequest request) {
+		fruitProductService.fruitProductOrder(request);
+	}
+	
 	
 }

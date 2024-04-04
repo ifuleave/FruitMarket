@@ -31,6 +31,11 @@ public class MemberRepository {
 		// TODO Auto-generated method stub
 		return memberMapper.memberList();
 	}
+
+	public Member getUserId(Long memberId) {
+		// TODO Auto-generated method stub
+		return memberMapper.getUserId(memberId);
+	}
 	
 //	public List<MemberOneResponse> memberList() {
 //		// TODO Auto-generated method stub

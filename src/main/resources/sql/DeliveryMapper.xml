@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sujin.fruit.repository.mapper.FruitProductMapper">
+<mapper namespace="com.sujin.delivery.repository.mapper.DeliveryMapper">
 	<!-- <select id="findById" parameterType="Long"
 	resultType="com.findjob.sample.domain.Sample">
     SELECT id, name
@@ -9,26 +9,11 @@
   </select> 
   keyProperty="fruitId"
   -->
-	<insert id="productSave" useGeneratedKeys="true">
-		INSERT INTO FRUIT_PRODUCT (
-									FRUIT_NAME,
-									FRUIT_PRICE,
-									FRUIT_AMOUNT,
-									FRUITCARTEGORY_ID
-									)
-							VALUES (
-									#{fruitName},
-									#{fruitPrice},
-									#{fruitAmount},
-									#{fruitcategoryId}
-									)
 
-	</insert>
-
-	<select id="fruitProductList">
-		SELECT * FROM FRUIT_PRODUCT
+	<select id="getdeliveryId" parameterType="Long">
+		SELECT DELIVERY_ID FROM delivery_info
 	</select>
-	<select id="fruitProductOne">
+	<!--<select id="fruitProductOne">
 		SELECT * FROM FRUIT_PRODUCT WHERE FRUIT_ID = #{id}
 	</select>
 	<update id="fruitProductUpdate">
@@ -42,7 +27,7 @@
 		delete from fruit_product where fruit_id = #{id}
 	</delete>
 	<insert id="fruitProductOrder" useGeneratedKeys="true">
-				INSERT INTO FRUIT_ORDER (
+				INSERT INTO FRUIT_PRODUCT (
 									FRUITORDER_STATUS,
 									MEMBER_ID,
 									DELIVERY_ID
@@ -51,28 +36,11 @@
 							VALUES (
 									0,
 									#{memberId},
-									#{deliveryId}
+									#{deliberyId}
 									)
 	</insert>
 	<update id="fruitProductChangeAmount">
 		update fruit_product set fruit_amount = fruit_amount - #{fruitAmount} where fruit_id = #{fruitId}
-	</update>
-	<select id="getOrderId" parameterType="Long">
-		select FRUITORDER_ID from fruit_order where MEMBER_ID = #{member_id} and DELIVERY_ID = #{deliveryId};
-	</select>
-	<insert id="orderDetailSave" useGeneratedKeys="true">
-		INSERT INTO FRUIT_PRODUCT (
-									ORDERDETAILS_PRICE,
-									ORDERDETAILS_AMOUNT,
-									FRUITORDER_ID,
-									FRUIT_ID
-									)
-							VALUES (
-									#{sumPrice},
-									#{requestAmount},
-									#{fruitorderId},
-									#{fruitId}
-									)
-	</insert>
+	</update>-->
 </mapper>
 
