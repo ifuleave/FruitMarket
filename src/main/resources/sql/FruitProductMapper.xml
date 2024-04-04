@@ -9,21 +9,37 @@
   </select> 
   keyProperty="fruitId"
   -->
-<insert id="productSave" useGeneratedKeys="true" >
-	INSERT INTO FRUIT_PRODUCT (
-								FRUIT_NAME,
-								FRUIT_PRICE,
-								FRUIT_AMOUNT,
-								FRUITCARTEGORY_ID
-								)
-					 VALUES	  (
-								#{fruitName},
-								#{fruitPrice},
-								#{fruitAmount},
-								#{fruitcategoryId}
-								)
-	
-</insert>
+	<insert id="productSave" useGeneratedKeys="true">
+		INSERT INTO FRUIT_PRODUCT (
+									FRUIT_NAME,
+									FRUIT_PRICE,
+									FRUIT_AMOUNT,
+									FRUITCARTEGORY_ID
+									)
+							VALUES (
+									#{fruitName},
+									#{fruitPrice},
+									#{fruitAmount},
+									#{fruitcategoryId}
+									)
 
+	</insert>
+
+	<select id="fruitProductList">
+		SELECT * FROM FRUIT_PRODUCT
+	</select>
+	<select id="fruitProductOne">
+		SELECT * FROM FRUIT_PRODUCT WHERE FRUIT_ID = #{id}
+	</select>
+	<update id="fruitProductUpdate">
+		UPDATE FRUIT_PRODUCT SET FRUIT_NAME = #{request.fruitName}, 
+								 FRUIT_PRICE = #{request.fruitPrice},
+								 FRUIT_AMOUNT = #{request.fruitAmount},
+								 FRUITCARTEGORY_ID = #{request.fruitcartegoryId}
+				WHERE FRUIT_ID = #{id}
+	</update>
+	<delete id="deleteFruitProduct">
+		delete from fruit_product where fruit_id = #{id}
+	</delete>
 </mapper>
 
