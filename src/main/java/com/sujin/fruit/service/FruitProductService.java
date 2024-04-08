@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sujin.delivery.domain.DeliveryInfo;
 import com.sujin.delivery.repository.DeliveryRepository;
+import com.sujin.fruit.domain.FruitOrder;
 import com.sujin.fruit.domain.FruitProduct;
+import com.sujin.fruit.domain.FruitProductOrderDetail;
 import com.sujin.fruit.dto.request.FruitProductOrderRequest;
 import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
@@ -72,31 +75,38 @@ public class FruitProductService {
 	@Transactional
 	public void fruitProductOrder(FruitProductOrderRequest request) {
 		// TODO Auto-generated method stub
-		// 1.어떤 회원이 주문을 하는지 회원을 가지고 온다.
-		// 2. 어떤 상품을 주문할것인지 FruitProduct를 조회해온다.
-		// 회원이 있고, 상품이 존재한다면 주문
-		// 		 - 상품을 주문할떄 수량을 초과 X,  주문 수량만큼 상품의 재고가 차감 
 		
+		// 1. 회원을 가져온다.
 		Member user = memberRepository.getUserId(request.getMemberId());
-		FruitProductOneResponse product = fruitProductRepository.fruitProductOne(request.getFruitId());
 		
-		if (user == null) {
-			throw new IllegalArgumentException("존재하지 않는 회원입니다.");
-		} else if (product == null) {
+		// 2. 회원의 배송지정보를 가져와서  배송지 저장/ deliveryId 가져오기
+		Long deliveryId = deliveryRepository.save(user.getMemberAddress());
+			
+		
+		FruitOrder order = new FruitOrder(request.getMemberId(),deliveryId);
+		 
+		// 상품 주문테이블에 insert 
+		  fruitProductRepository.fruitProductOrder(order);
+		
+		// 주문정보가져와서 , 상세 저장 
+		FruitProductOneResponse fruitProduct = fruitProductRepository.fruitProductOne(request.getFruitId());
+		
+		
+		if (fruitProduct == null) {
 			throw new IllegalArgumentException("존재하지 않는 상품입니다.");
-		} else if (product.getFruitAmount() < request.getFruitAmount()) {
+		} else if (fruitProduct.getFruitAmount() < request.getFruitAmount()) {
 			throw new IllegalArgumentException("상품 수량을 초과했습니다.");
 		}
 		
-		Long deliveryId = deliveryRepository.getdeliveryId();
-		fruitProductRepository.fruitProductOrder(request.getMemberId(),deliveryId);
-		Long fruitorderId = fruitProductRepository.getOrderId(request.getMemberId(),deliveryId);
+		FruitProductOrderDetail orderDetail = new FruitProductOrderDetail();
+		orderDetail.setOrderDetailsPrice(request.getFruitAmount()*fruitProduct.getFruitPrice());
+		orderDetail.setOrderDetailsAmount(request.getFruitAmount());
+		orderDetail.setFruitOrderId(order.getFruitorderId());
+		orderDetail.setFruitId(fruitProduct.getFruitId());
+		
+		fruitProductRepository.orderDetailSave(orderDetail);
+		
+		// 원래 수량-상품 수량 update
 		fruitProductRepository.fruitProductChangeAmount(request.getFruitAmount(),request.getFruitId());
-		int requestAmount  =  request.getFruitAmount();
-		int sumPrice = requestAmount * product.getFruitPrice();
-		
-		fruitProductRepository.orderDetailSave(request.getFruitId(),fruitorderId,requestAmount,sumPrice);
-		
 	}
-		
 }

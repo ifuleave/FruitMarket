@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.sujin.fruit.domain.FruitOrder;
 import com.sujin.fruit.domain.FruitProduct;
+import com.sujin.fruit.domain.FruitProductOrderDetail;
 import com.sujin.fruit.dto.request.FruitProductOrderRequest;
 import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
@@ -29,7 +31,7 @@ public class FruitProductRepository {
 			// TODO Auto-generated method stub
 			return fruitProductMapper.fruitProductList();
 		}
-
+		// 이후 삭제
 		public FruitProductOneResponse fruitProductOne(Long id) {
 			// TODO Auto-generated method stub
 			return fruitProductMapper.fruitProductOne(id);
@@ -45,24 +47,31 @@ public class FruitProductRepository {
 			fruitProductMapper.deleteFruitProduct(id);
 		}
 
-		public void fruitProductOrder(Long memberId, Long deliveryId) {
+//		public Long fruitProductOrder(Long memberId, Long deliveryId) {
+//			// TODO Auto-generated method stub
+//			return fruitProductMapper.fruitProductOrder(memberId,deliveryId);
+//		}
+
+		public void fruitProductChangeAmount(int fruitAmount, Long fruitId) {
 			// TODO Auto-generated method stub
-			fruitProductMapper.fruitProductOrder(memberId,deliveryId);
+			fruitProductMapper.fruitProductChangeAmount(fruitAmount,fruitId);
 		}
 
-		public FruitProduct fruitProductChangeAmount(int fruitAmount, Long fruitId) {
+
+		public void orderDetailSave(FruitProductOrderDetail orderDetail) {
 			// TODO Auto-generated method stub
-			return fruitProductMapper.fruitProductChangeAmount(fruitAmount,fruitId);
+			fruitProductMapper.orderDetailSave(orderDetail);
 		}
 
-		public Long getOrderId(Long memberId, Long deliveryId) {
+		public Long getFruitPoductOrderId(Long fruitOrderId) {
 			// TODO Auto-generated method stub
-			return fruitProductMapper.getOrderId(memberId,deliveryId);
+			return fruitProductMapper.getFruitPoductOrderId(fruitOrderId);
 		}
 
-		public void orderDetailSave(Long fruitId, Long fruitorderId, int requestAmount, int sumPrice) {
+		public void fruitProductOrder(FruitOrder order) {
 			// TODO Auto-generated method stub
-			fruitProductMapper.orderDetailSave(fruitId,fruitorderId,requestAmount,sumPrice);
+			 fruitProductMapper.fruitProductOrder(order);
 		}
-		
-}
+
+}		
+

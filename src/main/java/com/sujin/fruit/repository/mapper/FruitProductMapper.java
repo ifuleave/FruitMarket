@@ -5,7 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.sujin.fruit.domain.FruitOrder;
 import com.sujin.fruit.domain.FruitProduct;
+import com.sujin.fruit.domain.FruitProductOrderDetail;
 import com.sujin.fruit.dto.request.FruitProductOrderRequest;
 import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
@@ -27,12 +29,17 @@ public interface FruitProductMapper {
 
 	void deleteFruitProduct(Long id);
 
-	void fruitProductOrder(@Param("memberId")Long memberId, @Param("deliveryId")Long deliveryId);
+	//Long fruitProductOrder(@Param("memberId")Long memberId, @Param("deliveryId")Long deliveryId);
 
-	FruitProduct fruitProductChangeAmount(@Param("fruitAmount")int fruitAmount,@Param("fruitId") Long fruitId);
+	void fruitProductChangeAmount(@Param("fruitAmount")int fruitAmount,@Param("fruitId") Long fruitId);
 
 	Long getOrderId(@Param("memberId")Long memberId,@Param("deliveryId") Long deliveryId);
 
-	void orderDetailSave(@Param("fruitId")Long fruitId,@Param("fruitorderId") Long fruitorderId, @Param("requestAmount")int requestAmount, @Param("sumPrice")int sumPrice);
+	void orderDetailSave(FruitProductOrderDetail orderDetail);
+
+	Long getFruitPoductOrderId(Long fruitOrderId);
+
+	void fruitProductOrder(FruitOrder order);
+
 
 }

@@ -10,9 +10,16 @@
   keyProperty="fruitId"
   -->
 
-	<select id="getdeliveryId" parameterType="Long">
+<!--	<select id="getdeliveryId" parameterType="Long">
 		SELECT DELIVERY_ID FROM delivery_info
-	</select>
+	</select>-->
+	<insert id="save" parameterType="com.sujin.delivery.domain.DeliveryInfo"   keyProperty="deliveryId" keyColumn="DELIVERY_ID">
+		insert into delivery_info(DELIVERY_ADDRESS)
+							values(#{deliveryAddress})
+	<!--	  <selectKey keyProperty="deliveryId" keyColumn="DELIVERY_ID" order="AFTER" resultType="long">
+		    SELECT LAST_INSERT_ID()
+		  </selectKey>-->
+	</insert>
 	<!--<select id="fruitProductOne">
 		SELECT * FROM FRUIT_PRODUCT WHERE FRUIT_ID = #{id}
 	</select>

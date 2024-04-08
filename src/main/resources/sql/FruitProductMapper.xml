@@ -41,15 +41,13 @@
 	<delete id="deleteFruitProduct">
 		delete from fruit_product where fruit_id = #{id}
 	</delete>
-	<insert id="fruitProductOrder" useGeneratedKeys="true">
+	<insert id="fruitProductOrder" parameterType="com.sujin.fruit.domain.FruitOrder" useGeneratedKeys="true"  keyProperty="fruitorderId" keyColumn="FRUITORDER_ID">
 				INSERT INTO FRUIT_ORDER (
-									FRUITORDER_STATUS,
 									MEMBER_ID,
 									DELIVERY_ID
 
 									)
 							VALUES (
-									0,
 									#{memberId},
 									#{deliveryId}
 									)
@@ -57,22 +55,24 @@
 	<update id="fruitProductChangeAmount">
 		update fruit_product set fruit_amount = fruit_amount - #{fruitAmount} where fruit_id = #{fruitId}
 	</update>
-	<select id="getOrderId" parameterType="Long">
-		select FRUITORDER_ID from fruit_order where MEMBER_ID = #{member_id} and DELIVERY_ID = #{deliveryId};
-	</select>
+	
 	<insert id="orderDetailSave" useGeneratedKeys="true">
-		INSERT INTO FRUIT_PRODUCT (
+		INSERT INTO orderdetails (
 									ORDERDETAILS_PRICE,
 									ORDERDETAILS_AMOUNT,
 									FRUITORDER_ID,
 									FRUIT_ID
 									)
 							VALUES (
-									#{sumPrice},
-									#{requestAmount},
-									#{fruitorderId},
+									#{orderDetailsPrice},
+									#{orderDetailsAmount},
+									#{fruitOrderId},
 									#{fruitId}
 									)
 	</insert>
+	
+	<select id="getFruitPoductOrderId" resultType="long">
+		select FRUITORDER_ID from fruit_order where FRUITORDER_ID = #{fruitOrderId};
+	</select>
 </mapper>
 

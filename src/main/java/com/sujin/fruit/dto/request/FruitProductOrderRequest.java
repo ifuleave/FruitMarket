@@ -8,7 +8,6 @@ import lombok.Setter;
 @Setter
 public class FruitProductOrderRequest {
 
-	@NotNull(message = "상품 아이디는 필수 입력 값입니다.")
 	private Long memberId;
 	private Long fruitId;
 	private int fruitAmount;
