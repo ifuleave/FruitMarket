@@ -4,11 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class DeliveryInfo {
 
 	private Long deliveryId;
-	private String deliveryStatus; // READY,  COMP
+	private DeliveryStatus deliveryStatus;  // READY,  COMP
 	private String deliveryAddress;
 	
+}
+
+enum DeliveryStatus{
+	READY, COMP
 }

@@ -13,7 +13,7 @@ public interface MemberMapper {
 
 	void memberSave(Member member);
 
-	Member findByMail(String memberMail);
+	Member findByMail(String memberEmail);
 
 	List<Member> memberList();
 

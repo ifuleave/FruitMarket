@@ -1,7 +1,9 @@
 package com.sujin.fruit.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,12 @@ import com.sujin.fruit.domain.FruitProductOrderDetail;
 import com.sujin.fruit.dto.request.FruitProductOrderRequest;
 import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
+import com.sujin.fruit.dto.request.OrderDetilsListRequest;
+import com.sujin.fruit.dto.response.DetailOrder;
 import com.sujin.fruit.dto.response.FruitListReponse;
 import com.sujin.fruit.dto.response.FruitProductOneResponse;
+import com.sujin.fruit.dto.response.OrderDetilsListReponse;
+import com.sujin.fruit.dto.response.OrderMember;
 import com.sujin.fruit.repository.FruitProductRepository;
 import com.sujin.member.domain.Member;
 import com.sujin.member.repository.MemberRepository;
@@ -49,7 +55,7 @@ public class FruitProductService {
 			reponse.setFruitPrice(product.get(i).getFruitPrice());
 			reponse.setFruitName(product.get(i).getFruitName());
 			reponse.setFruitAmount(product.get(i).getFruitAmount());
-			reponse.setFruitcategoryId(product.get(i).getFruitcartegoryId());
+			reponse.setFruitcategoryId(product.get(i).getFruitcategoryId());
 			list.add(reponse);
 		}
 		return list;
@@ -108,5 +114,10 @@ public class FruitProductService {
 		
 		// 원래 수량-상품 수량 update
 		fruitProductRepository.fruitProductChangeAmount(request.getFruitAmount(),request.getFruitId());
+	}
+
+	public List<OrderDetilsListReponse> orderDetailsList(String orderStatus, String userName) {		
+		// TODO - 가격, 전체 카테고리 바꾸기(사과) 
+		return fruitProductRepository.orderDetailsList(orderStatus,userName);
 	}
 }

@@ -22,9 +22,9 @@ public class MemberRepository {
 		memberMapper.memberSave(member);
 	}
 
-	public Member findByMail(String memberMail) {
+	public Member findByMail(String memberEmail) {
 		// TODO Auto-generated method stub
-		return memberMapper.findByMail(memberMail);
+		return memberMapper.findByMail(memberEmail);
 	}
 
 	public List<Member> memberList() {

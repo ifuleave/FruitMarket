@@ -10,11 +10,11 @@
   keyProperty="fruitId"
   -->
 	<insert id="productSave" useGeneratedKeys="true">
-		INSERT INTO FRUIT_PRODUCT (
+		INSERT INTO fruitproduct (
 									FRUIT_NAME,
 									FRUIT_PRICE,
 									FRUIT_AMOUNT,
-									FRUITCARTEGORY_ID
+									fruit_category_id
 									)
 							VALUES (
 									#{fruitName},
@@ -26,42 +26,43 @@
 	</insert>
 
 	<select id="fruitProductList">
-		SELECT * FROM FRUIT_PRODUCT
+		SELECT * FROM fruitproduct
 	</select>
 	<select id="fruitProductOne">
-		SELECT * FROM FRUIT_PRODUCT WHERE FRUIT_ID = #{id}
+		SELECT * FROM fruitproduct WHERE FRUIT_ID = #{id}
 	</select>
 	<update id="fruitProductUpdate">
-		UPDATE FRUIT_PRODUCT SET FRUIT_NAME = #{request.fruitName}, 
+		UPDATE fruitproduct SET FRUIT_NAME = #{request.fruitName}, 
 								 FRUIT_PRICE = #{request.fruitPrice},
 								 FRUIT_AMOUNT = #{request.fruitAmount},
-								 FRUITCARTEGORY_ID = #{request.fruitcartegoryId}
+								 fruit_category_id = #{request.fruitcategoryId}
 				WHERE FRUIT_ID = #{id}
 	</update>
 	<delete id="deleteFruitProduct">
-		delete from fruit_product where fruit_id = #{id}
+		delete from fruitproduct where fruit_id = #{id}
 	</delete>
 	<insert id="fruitProductOrder" parameterType="com.sujin.fruit.domain.FruitOrder" useGeneratedKeys="true"  keyProperty="fruitorderId" keyColumn="FRUITORDER_ID">
-				INSERT INTO FRUIT_ORDER (
+				INSERT INTO fruitorder (
 									MEMBER_ID,
-									DELIVERY_ID
-
+									DELIVERY_ID,
+									ORDER_STATUS
 									)
 							VALUES (
 									#{memberId},
-									#{deliveryId}
+									#{deliveryId},
+									#{orderStatus}
 									)
 	</insert>
 	<update id="fruitProductChangeAmount">
-		update fruit_product set fruit_amount = fruit_amount - #{fruitAmount} where fruit_id = #{fruitId}
+		update fruitproduct set fruit_amount = fruit_amount - #{fruitAmount} where fruit_id = #{fruitId}
 	</update>
 	
-	<insert id="orderDetailSave" useGeneratedKeys="true">
-		INSERT INTO orderdetails (
-									ORDERDETAILS_PRICE,
-									ORDERDETAILS_AMOUNT,
-									FRUITORDER_ID,
-									FRUIT_ID
+	<insert id="orderDetailSave" useGeneratedKeys="true"> <!-- orderdetails-->
+		INSERT INTO fruitproductorderdetail (
+									order_details_price,
+									order_details_amount,
+									fruit_order_id,
+									fruit_id
 									)
 							VALUES (
 									#{orderDetailsPrice},
@@ -72,7 +73,58 @@
 	</insert>
 	
 	<select id="getFruitPoductOrderId" resultType="long">
-		select FRUITORDER_ID from fruit_order where FRUITORDER_ID = #{fruitOrderId};
+		select fruit_order_id from fruitorder where fruit_order_id = #{fruitOrderId};
 	</select>
+
+<resultMap id="OrderDetilsMap" type="com.sujin.fruit.dto.response.OrderDetilsListReponse">
+	<id property="fruitOrderId" column="fruit_order_id"/>
+	<result property="memberAddress" column="member_address"/>
+	<result property="orderStatus" column="order_status"/>
+	<!-- 아래 member 실행해서 가져옴 columnPrefix="MEMBER_"-->
+	<association property="member" resultMap="memberMap" /> 
+	<association property="product" resultMap="orderMap"/>
+</resultMap>
+
+<!-- member 객체 매핑 -->
+<resultMap id="memberMap" type="com.sujin.fruit.dto.response.OrderMember">
+	<id property="memberId" column="member_id"/>
+	<result property="memberName" column="member_name"/>
+	<result property="memberEmail" column="member_email"/>
+</resultMap>
+<!-- member 객체 매핑 -->
+<resultMap id="orderMap" type="com.sujin.fruit.dto.response.DetailOrder">
+	<id property="fruitName" column="fruit_name"/>
+	<result property="fruitCategoryName" column="fruit_category_name"/>
+	<result property="orderDetailsPrice" column="order_details_price"/>
+	<result property="orderDetailsAmount" column="order_details_amount"/>
+</resultMap>
+
+
+	<select id="orderDetailsList" resultMap="OrderDetilsMap">
+		select  f.fruit_order_id ,
+				f.order_status, 
+				m.member_id,
+				m.member_name,
+				m.member_Address,
+				m.member_email,
+				fd.order_details_price,
+				fd.order_details_amount,
+				fp.fruit_name,
+				ct.fruit_category_name
+				FROM 
+				    fruitorder f
+				JOIN 
+				    member m ON f.member_id = m.member_id
+				JOIN 
+				    fruitproductorderdetail fd ON f.fruit_order_id = fd.fruit_order_id
+				JOIN 
+				    fruitproduct fp ON fd.fruit_id = fp.fruit_id   
+				JOIN fruitcategory ct on ct.fruit_category_id = fp.fruit_category_id
+				<if test="userName != null">
+					WHERE m.member_name like '%'||#{userName}||'%'  AND f.order_status like '%'||#{orderStatus}||'%' 
+				</if>
+	</select>
+	
+	
 </mapper>
 

@@ -12,6 +12,7 @@ import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
 import com.sujin.fruit.dto.response.FruitListReponse;
 import com.sujin.fruit.dto.response.FruitProductOneResponse;
+import com.sujin.fruit.dto.response.OrderDetilsListReponse;
 import com.sujin.fruit.repository.mapper.FruitProductMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -71,6 +72,11 @@ public class FruitProductRepository {
 		public void fruitProductOrder(FruitOrder order) {
 			// TODO Auto-generated method stub
 			 fruitProductMapper.fruitProductOrder(order);
+		}
+
+		public List<OrderDetilsListReponse> orderDetailsList(String orderStatus, String userName) {
+			// TODO Auto-generated method stub
+			return fruitProductMapper.orderDetailsList(orderStatus,userName);
 		}
 
 }		

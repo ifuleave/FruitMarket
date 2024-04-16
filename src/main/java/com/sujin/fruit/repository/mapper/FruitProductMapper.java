@@ -13,6 +13,7 @@ import com.sujin.fruit.dto.request.FruitProductSaveRequest;
 import com.sujin.fruit.dto.request.FruitProductUpdateRequest;
 import com.sujin.fruit.dto.response.FruitListReponse;
 import com.sujin.fruit.dto.response.FruitProductOneResponse;
+import com.sujin.fruit.dto.response.OrderDetilsListReponse;
 
 @Mapper
 public interface FruitProductMapper {
@@ -20,8 +21,6 @@ public interface FruitProductMapper {
 	void productSave(FruitProductSaveRequest request);
 
 	List<FruitProduct> fruitProductList();
-
-	FruitProductOneResponse fruitProductOnt(Long id);
 
 	FruitProductOneResponse fruitProductOne(Long id);
 
@@ -40,6 +39,8 @@ public interface FruitProductMapper {
 	Long getFruitPoductOrderId(Long fruitOrderId);
 
 	void fruitProductOrder(FruitOrder order);
+
+	List<OrderDetilsListReponse> orderDetailsList(@Param("orderStatus")String orderStatus,@Param("userName") String userName);
 
 
 }

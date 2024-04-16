@@ -9,5 +9,5 @@ public class FruitProductUpdateRequest {
 	private String fruitName;
 	private int fruitPrice;
 	private int fruitAmount;
-	private Long fruitcartegoryId;
+	private Long fruitcategoryId;
 }

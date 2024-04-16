@@ -4,21 +4,23 @@ import com.sujin.member.domain.Member;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class MemberSaveRequest {
 	
-	private String memberMail;
+	private String memberEmail;
 	private String memberName;
 	private String memberAddress;
 	
 	
-	public MemberSaveRequest(String memberMail, String memberName, String memberAddress) {
+	public MemberSaveRequest(String memberEmail, String memberName, String memberAddress) {
 		
-		this.memberMail = memberMail;
+		this.memberEmail = memberEmail;
 		this.memberName = memberName;
 		this.memberAddress = memberAddress;
 	}
@@ -27,7 +29,7 @@ public class MemberSaveRequest {
 	
 	public static  Member toMember(MemberSaveRequest request) {
 		return Member.builder()
-				.memberMail(request.getMemberMail())
+				.memberEmail(request.getMemberEmail())
 				.memberName(request.getMemberName())
 				.memberAddress(request.getMemberAddress())
 				.build();

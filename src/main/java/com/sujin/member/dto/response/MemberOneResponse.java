@@ -11,14 +11,14 @@ import lombok.Setter;
 public class MemberOneResponse {
 
 	private Long memberId;
-	private String memberMail;
+	private String memberEmail;
 	private String memberName;
 	private String memberAddress;
 	
 	@Builder
-	public MemberOneResponse(Long memberId, String memberMail, String memberName, String memberAddress) {
+	public MemberOneResponse(Long memberId, String memberEmail, String memberName, String memberAddress) {
 		this.memberId = memberId;
-		this.memberMail = memberMail;
+		this.memberEmail = memberEmail;
 		this.memberName = memberName;
 		this.memberAddress = memberAddress;
 	}
@@ -27,7 +27,7 @@ public class MemberOneResponse {
 		return Member.builder()
 				.memberId(response.getMemberId())
 				.memberName(response.getMemberName())
-				.memberMail(response.getMemberMail())
+				.memberEmail(response.getMemberEmail())
 				.memberAddress(response.getMemberAddress())
 				.build();
 				
@@ -37,7 +37,7 @@ public class MemberOneResponse {
 		return MemberOneResponse.builder()
 				.memberId(member.getMemberId())
 				.memberName(member.getMemberName())
-				.memberMail(member.getMemberMail())
+				.memberEmail(member.getMemberEmail())
 				.memberAddress(member.getMemberAddress())
 				.build();
 	}

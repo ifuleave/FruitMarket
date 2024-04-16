@@ -23,7 +23,7 @@ public class MemberService {
 	@Transactional
 	public void memberSave(MemberSaveRequest request) {
 		
-		Member m = memberRepository.findByMail(request.getMemberMail());
+		Member m = memberRepository.findByMail(request.getMemberEmail());
 		
 		 if(m != null) {
 			 throw new IllegalArgumentException("중복된 이메일 입니다.");

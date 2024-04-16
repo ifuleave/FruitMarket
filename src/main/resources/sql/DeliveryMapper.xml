@@ -10,44 +10,12 @@
   keyProperty="fruitId"
   -->
 
-<!--	<select id="getdeliveryId" parameterType="Long">
-		SELECT DELIVERY_ID FROM delivery_info
-	</select>-->
-	<insert id="save" parameterType="com.sujin.delivery.domain.DeliveryInfo"   keyProperty="deliveryId" keyColumn="DELIVERY_ID">
-		insert into delivery_info(DELIVERY_ADDRESS)
-							values(#{deliveryAddress})
-	<!--	  <selectKey keyProperty="deliveryId" keyColumn="DELIVERY_ID" order="AFTER" resultType="long">
-		    SELECT LAST_INSERT_ID()
-		  </selectKey>-->
-	</insert>
-	<!--<select id="fruitProductOne">
-		SELECT * FROM FRUIT_PRODUCT WHERE FRUIT_ID = #{id}
-	</select>
-	<update id="fruitProductUpdate">
-		UPDATE FRUIT_PRODUCT SET FRUIT_NAME = #{request.fruitName}, 
-								 FRUIT_PRICE = #{request.fruitPrice},
-								 FRUIT_AMOUNT = #{request.fruitAmount},
-								 FRUITCARTEGORY_ID = #{request.fruitcartegoryId}
-				WHERE FRUIT_ID = #{id}
-	</update>
-	<delete id="deleteFruitProduct">
-		delete from fruit_product where fruit_id = #{id}
-	</delete>
-	<insert id="fruitProductOrder" useGeneratedKeys="true">
-				INSERT INTO FRUIT_PRODUCT (
-									FRUITORDER_STATUS,
-									MEMBER_ID,
-									DELIVERY_ID
 
-									)
-							VALUES (
-									0,
-									#{memberId},
-									#{deliberyId}
-									)
+	<insert id="save" parameterType="com.sujin.delivery.domain.DeliveryInfo"   keyProperty="deliveryId" keyColumn="DELIVERY_ID">
+		insert into deliveryinfo(DELIVERY_ADDRESS)
+							values(#{deliveryAddress})
+
 	</insert>
-	<update id="fruitProductChangeAmount">
-		update fruit_product set fruit_amount = fruit_amount - #{fruitAmount} where fruit_id = #{fruitId}
-	</update>-->
+
 </mapper>
 

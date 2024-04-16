@@ -9,6 +9,6 @@ public class FruitProduct {
 	private String fruitName;			// 과일이름
 	private int fruitPrice;				// 과일가격
 	private int fruitAmount;			// 수량
-	private Long fruitcartegoryId;		//카테고리
+	private Long fruitcategoryId;		//카테고리
 	
 }

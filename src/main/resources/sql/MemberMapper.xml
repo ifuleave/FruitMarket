@@ -9,19 +9,19 @@
   </select>-->
 <insert id="memberSave" useGeneratedKeys="true" keyProperty="memberId">
 	INSERT INTO MEMBER (
-						MEMBER_MAIL,
+						MEMBER_EMAIL,
 						MEMBER_NAME,
 						MEMBER_ADDRESS
 						)
 				VALUES(
-						#{memberMail},
+						#{memberEmail},
 						#{memberName},
 						#{memberAddress}
 						)
 	
 </insert>
 	<select id="findByMail">
-		SELECT * FROM MEMBER WHERE MEMBER_MAIL = #{memberMail}
+		SELECT * FROM MEMBER WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>
 
 	<select id="memberList">
