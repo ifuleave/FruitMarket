@@ -42,5 +42,11 @@ public interface FruitProductMapper {
 
 	List<OrderDetilsListReponse> orderDetailsList(@Param("orderStatus")String orderStatus,@Param("userName") String userName);
 
+	void cancelOrder(Long fruitOrderId);
+
+	FruitProductOrderDetail restoreAmount(Long fruitorderId);
+
+	void updateAmount(@Param("amount")int amount,@Param("fruitId") Long fruitId);
+
 
 }

@@ -79,5 +79,20 @@ public class FruitProductRepository {
 			return fruitProductMapper.orderDetailsList(orderStatus,userName);
 		}
 
+		public void cancelOrder(Long fruitOrderId) {
+			// TODO Auto-generated method stub
+			 fruitProductMapper.cancelOrder(fruitOrderId);
+		}
+
+		public FruitProductOrderDetail restoreAmount(Long fruitorderId) {
+			// TODO Auto-generated method stub
+			return fruitProductMapper.restoreAmount(fruitorderId);
+		}
+
+		public void updateAmount(int amount, Long fruitId) {
+			// TODO Auto-generated method stub
+			fruitProductMapper.updateAmount(amount,fruitId);
+		}
+
 }		
 

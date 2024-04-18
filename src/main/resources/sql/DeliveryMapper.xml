@@ -11,9 +11,9 @@
   -->
 
 
-	<insert id="save" parameterType="com.sujin.delivery.domain.DeliveryInfo"   keyProperty="deliveryId" keyColumn="DELIVERY_ID">
-		insert into deliveryinfo(DELIVERY_ADDRESS)
-							values(#{deliveryAddress})
+	<insert id="save" parameterType="com.sujin.delivery.domain.DeliveryInfo"  keyProperty="deliveryId" keyColumn="DELIVERY_ID">
+		insert into deliveryinfo(DELIVERY_ADDRESS,delivery_status )
+							values(#{deliveryAddress},#{deliveryStatus})
 
 	</insert>
 

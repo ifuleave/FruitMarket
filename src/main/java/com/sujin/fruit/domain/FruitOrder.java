@@ -1,8 +1,10 @@
 package com.sujin.fruit.domain;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class FruitOrder {
 	private Long fruitorderId;			// 상품주문 아이디
 	private FruitOrderStatus orderStatus;		// 주문 상태 디폴트  ORDER,  CANCEL
@@ -13,6 +15,10 @@ public class FruitOrder {
 		this.orderStatus = FruitOrderStatus.ORDER;
 		this.memberId = memberId;
 		this.deliveryId = deliveryId;
+	}
+	
+	public FruitOrder() {
+
 	}
 }
 

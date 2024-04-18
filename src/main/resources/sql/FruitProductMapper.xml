@@ -107,7 +107,7 @@
 				m.member_name,
 				m.member_Address,
 				m.member_email,
-				fd.order_details_price,
+				(fd.order_details_price * fd.order_details_amount) as order_details_price,
 				fd.order_details_amount,
 				fp.fruit_name,
 				ct.fruit_category_name
@@ -124,7 +124,15 @@
 					WHERE m.member_name like '%'||#{userName}||'%'  AND f.order_status like '%'||#{orderStatus}||'%' 
 				</if>
 	</select>
-	
-	
+	<update id="cancelOrder">
+		update fruitorder set order_status ='CANCEL' where fruit_order_id =#{fruitOrderId}
+	</update>
+	<select id="restoreAmount">
+		select * from fruitproductorderdetail
+		where fruit_order_id = #{fruitorderId}
+	</select>
+	<update id="updateAmount">
+		update fruitproduct set fruit_amount = fruit_amount + #{amount} where fruit_id = #{fruitId}
+	</update>
 </mapper>
 

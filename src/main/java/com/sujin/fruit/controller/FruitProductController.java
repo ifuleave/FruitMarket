@@ -65,4 +65,11 @@ public class FruitProductController {
 		return fruitProductService.orderDetailsList(orderStatus, memberId);
 	}
 
+	@PostMapping("/api/{orderId}/cancel")
+	public void cancelOrder(@PathVariable("orderId")Long fruitOrderId) {
+		// TODO Auto-generated method stub
+		fruitProductService.cancelOrder(fruitOrderId);
+	}
+	
 }
+

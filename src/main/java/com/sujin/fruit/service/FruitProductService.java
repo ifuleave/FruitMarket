@@ -117,7 +117,24 @@ public class FruitProductService {
 	}
 
 	public List<OrderDetilsListReponse> orderDetailsList(String orderStatus, String userName) {		
-		// TODO - 가격, 전체 카테고리 바꾸기(사과) 
 		return fruitProductRepository.orderDetailsList(orderStatus,userName);
+	}
+
+	@Transactional
+	public void cancelOrder(Long fruitOrderId) {
+		// TODO Auto-generated method stub
+		
+		Long getfruitOrderId = fruitProductRepository.getFruitPoductOrderId(fruitOrderId);
+		if(getfruitOrderId != fruitOrderId) {
+			throw new IllegalArgumentException("일치하는 정보가 없습니다.");
+		}
+		// status 값 변경
+		fruitProductRepository.cancelOrder(getfruitOrderId);
+		// 수량 
+		FruitProductOrderDetail fpod = fruitProductRepository.restoreAmount(getfruitOrderId);
+		int amount =  fpod.getOrderDetailsAmount();
+		
+		fruitProductRepository.updateAmount(amount,fpod.getFruitId());
+		
 	}
 }
