@@ -122,7 +122,7 @@ public class FruitProductService {
 
 	@Transactional
 	public void cancelOrder(Long fruitOrderId) {
-		// TODO Auto-generated method stub
+		// TODO 1. 값변경시 cancel (db에 박는게 맞아?) 2. fruitorder 테이블에 취소건 수량은 - 붙여줘야하나?
 		
 		Long getfruitOrderId = fruitProductRepository.getFruitPoductOrderId(fruitOrderId);
 		if(getfruitOrderId != fruitOrderId) {
