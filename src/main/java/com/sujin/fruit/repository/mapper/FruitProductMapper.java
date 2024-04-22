@@ -48,5 +48,7 @@ public interface FruitProductMapper {
 
 	void updateAmount(@Param("amount")int amount,@Param("fruitId") Long fruitId);
 
+	void minusDetailAmount(@Param("amount")int amount,@Param("getfruitOrderId") Long getfruitOrderId);
+
 
 }

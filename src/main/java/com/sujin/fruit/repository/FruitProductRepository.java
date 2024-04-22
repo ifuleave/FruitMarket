@@ -94,5 +94,10 @@ public class FruitProductRepository {
 			fruitProductMapper.updateAmount(amount,fruitId);
 		}
 
+		public void minusDetailAmount(int amount, Long getfruitOrderId) {
+			// TODO Auto-generated method stub
+			fruitProductMapper.minusDetailAmount(amount,getfruitOrderId);
+		}
+
 }		
 

@@ -26,7 +26,6 @@ public class MemberController {
 	  public ResponseEntity<Void> memberSave(@RequestBody MemberSaveRequest request) {
 		  memberSerivce.memberSave(request); 
 		  return ResponseEntity.ok().build(); 
-	  
 	  }
 	  
 //	@PostMapping("/api/members")

@@ -5,8 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.sujin.member.domain.Member;
-import com.sujin.member.dto.response.MemberOneResponse;
-
 
 @Mapper
 public interface MemberMapper {
@@ -18,7 +16,7 @@ public interface MemberMapper {
 	List<Member> memberList();
 
 	Member getUserId(Long memberId);
-	
+
 //	List<MemberOneResponse> memberList();
 
 }

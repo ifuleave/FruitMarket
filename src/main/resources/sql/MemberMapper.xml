@@ -7,19 +7,19 @@
     FROM samples
     WHERE id = #{id}
   </select>-->
-<insert id="memberSave" useGeneratedKeys="true" keyProperty="memberId">
-	INSERT INTO MEMBER (
-						MEMBER_EMAIL,
-						MEMBER_NAME,
-						MEMBER_ADDRESS
-						)
-				VALUES(
-						#{memberEmail},
-						#{memberName},
-						#{memberAddress}
-						)
-	
-</insert>
+	<insert id="memberSave" useGeneratedKeys="true" keyProperty="memberId">
+		INSERT INTO MEMBER (
+		MEMBER_EMAIL,
+		MEMBER_NAME,
+		MEMBER_ADDRESS
+		)
+		VALUES(
+		#{memberEmail},
+		#{memberName},
+		#{memberAddress}
+		)
+
+	</insert>
 	<select id="findByMail">
 		SELECT * FROM MEMBER WHERE MEMBER_EMAIL = #{memberEmail}
 	</select>

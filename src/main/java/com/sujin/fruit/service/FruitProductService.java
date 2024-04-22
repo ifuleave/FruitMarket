@@ -131,10 +131,12 @@ public class FruitProductService {
 		// status 값 변경
 		fruitProductRepository.cancelOrder(getfruitOrderId);
 		// 수량 
+		
 		FruitProductOrderDetail fpod = fruitProductRepository.restoreAmount(getfruitOrderId);
 		int amount =  fpod.getOrderDetailsAmount();
 		
 		fruitProductRepository.updateAmount(amount,fpod.getFruitId());
+		fruitProductRepository.minusDetailAmount(amount,getfruitOrderId);
 		
 	}
 }

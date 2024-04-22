@@ -134,5 +134,9 @@
 	<update id="updateAmount">
 		update fruitproduct set fruit_amount = fruit_amount + #{amount} where fruit_id = #{fruitId}
 	</update>
+	<update id="minusDetailAmount">
+		update fruitproductorderdetail set order_details_amount = -#{amount} where fruit_order_id =#{getfruitOrderId}
+	</update>
+	
 </mapper>
 
